@@ -1,0 +1,25 @@
+{
+  "name": {
+    "en-US": "YouTube Without AI"
+  },
+  "summary": {
+    "en-US": "Hide or highlight YouTube videos that YouTube labels as made with AI."
+  },
+  "description": {
+    "en-US": "YouTube Without AI filters videos that YouTube identifies with its own AI disclosure label.\n\nFeatures:\n\n- Hides labeled videos from feeds, search results, related videos, playlists, and Shorts.\n- Provides a Dim mode for reviewing detected videos.\n- Provides a Debug mode with a red outline around detected videos.\n- Can automatically skip labeled Shorts.\n- Stores settings and detection results locally.\n- Does not send analytics or tracking requests.\n\nThis extension uses YouTube's disclosure data. It does not use an independent AI detector. It cannot identify AI content that YouTube does not label.\n\nThis project is an independent Firefox port of Weedout for YouTube:\nhttps://github.com/masteranza/weedout-for-youtube\n\nSource code:\nhttps://github.com/kamyar/youtube-without-ai"
+  },
+  "categories": [
+    "photos-music-videos"
+  ],
+  "default_locale": "en-US",
+  "homepage": {
+    "en-US": "https://github.com/kamyar/youtube-without-ai"
+  },
+  "is_experimental": false,
+  "requires_payment": false,
+  "slug": "youtube-without-ai",
+  "version": {
+    "license": "MIT",
+    "approval_notes": "The package contains readable JavaScript, CSS, HTML, JSON, and image files. The build does not bundle, transpile, generate, or minify extension code. web-ext only validates the files and creates the ZIP archive. The extension sends same-origin requests to YouTube's /youtubei/v1/next endpoint to read YouTube's own AI disclosure metadata. It stores settings and cached results locally. It does not send analytics or tracking requests."
+  }
+}

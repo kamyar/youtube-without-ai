@@ -1,0 +1,86 @@
+name: Publish to AMO
+run-name: Publish ${{ inputs.version }} to AMO
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version from extension/manifest.json
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-amo
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Submit listed extension
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify branch and version
+        shell: bash
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
+            echo "Select the main branch when you run this workflow." >&2
+            exit 1
+          fi
+
+          manifest_version=$(node -p "require('./extension/manifest.json').version")
+          if [[ "$REQUESTED_VERSION" != "$manifest_version" ]]; then
+            echo "Requested version $REQUESTED_VERSION does not match manifest version $manifest_version." >&2
+            exit 1
+          fi
+
+      - name: Validate and build
+        run: npm run build
+
+      - name: Submit listed version to AMO
+        shell: bash
+        env:
+          AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+          AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        run: |
+          test -n "$AMO_JWT_ISSUER"
+          test -n "$AMO_JWT_SECRET"
+          npm exec -- web-ext sign \
+            --source-dir extension \
+            --artifacts-dir dist/amo \
+            --channel listed \
+            --amo-metadata amo-metadata.json \
+            --api-key "$AMO_JWT_ISSUER" \
+            --api-secret "$AMO_JWT_SECRET" \
+            --no-input \
+            --timeout 300000 \
+            --approval-timeout 0
+
+      - name: Add submission link
+        shell: bash
+        env:
+          REQUESTED_VERSION: ${{ inputs.version }}
+        run: |
+          {
+            echo "## AMO submission complete"
+            echo
+            echo "Mozilla must approve version $REQUESTED_VERSION before it becomes public."
+            echo
+            echo "[Open the Mozilla Developer Hub](https://addons.mozilla.org/en-US/developers/addon/54dfe21f15314064ab08/versions)"
+          } >> "$GITHUB_STEP_SUMMARY"

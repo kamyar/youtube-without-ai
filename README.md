@@ -9,7 +9,7 @@ The extension hides videos that YouTube labels as “Made with AI.” The Firefo
 - [Download the latest Mozilla-signed Firefox extension](https://github.com/kamyar/youtube-without-ai/releases/latest/download/youtube_without_ai-firefox.xpi)
 - [View the latest release](https://github.com/kamyar/youtube-without-ai/releases/latest)
 
-The Mozilla submission is unlisted. It does not have a public Firefox Add-ons page.
+The current Mozilla release is unlisted. After Mozilla approves a listed submission, the extension will be available at [addons.mozilla.org/firefox/addon/youtube-without-ai](https://addons.mozilla.org/firefox/addon/youtube-without-ai/).
 
 ## What it does
 
@@ -41,7 +41,19 @@ Validate the extension and create the production package:
 npm run build
 ```
 
-The build creates `dist/youtube_without_ai-1.1.3.zip`.
+The build creates `dist/youtube_without_ai-1.1.4.zip`.
+
+## Submit a listed AMO version
+
+1. Update the versions in `package.json` and `extension/manifest.json`.
+2. Push the change to `main`.
+3. Open the **Publish to AMO** workflow in GitHub Actions.
+4. Select **Run workflow**.
+5. Enter the exact manifest version.
+
+The workflow validates and builds the extension. It then submits the extension to the listed AMO channel with `amo-metadata.json`. The workflow does not wait for Mozilla review.
+
+Each AMO version can use only one distribution channel. Do not create a `v*` tag for a version that you submit to the listed channel. The tag release workflow uses the unlisted channel.
 
 ## Limit
 

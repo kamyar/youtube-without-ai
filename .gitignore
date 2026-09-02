@@ -2,17 +2,6 @@
 .DS_Store
 **/.DS_Store
 
-# Xcode
-xcuserdata/
-**/xcuserdata/
-DerivedData/
-build/
-**/build/
-*.xcarchive
-*.dSYM/
-*.swiftmodule/
-*.bak
-
 # Backups
 *.bak
 
@@ -26,8 +15,5 @@ dist/
 __pycache__/
 *.pyc
 
-# Local launch tooling and private release material
+# Local tooling
 .claude/
-appstore/weedout-promocodes.txt
-appstore/promotion-log.md
-appstore/screenshots/

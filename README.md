@@ -2,7 +2,7 @@
 
 > **Firefox port:** This repository is an independent Firefox port of [Weedout for YouTube](https://github.com/masteranza/weedout-for-youtube). The upstream project targets Safari. This repository is not the upstream Safari project.
 
-The extension hides videos that YouTube labels as “Made with AI.” The Firefox source is in `extension/`. The imported Safari source is in `app/` for upstream reference.
+The extension hides videos that YouTube labels as “Made with AI.” The Firefox source is in `extension/`.
 
 ## Download
 

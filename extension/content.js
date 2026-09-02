@@ -68,7 +68,8 @@
     if (!de) return;
     if (settings.enabled) de.setAttribute('data-aib-on', '');
     else de.removeAttribute('data-aib-on');
-    de.setAttribute('data-aib-mode', settings.mode === 'dim' ? 'dim' : 'hide');
+    const mode = settings.mode === 'dim' || settings.mode === 'debug' ? settings.mode : 'hide';
+    de.setAttribute('data-aib-mode', mode);
   };
 
   // ----------------------------------------------------------------- storage

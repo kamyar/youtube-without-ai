@@ -10,8 +10,10 @@
   const render = () => {
     $('enabled').checked = settings.enabled;
     $('skipShorts').checked = settings.skipShorts;
-    $('mode-hide').classList.toggle('active', settings.mode !== 'dim');
-    $('mode-dim').classList.toggle('active', settings.mode === 'dim');
+    const mode = settings.mode === 'dim' || settings.mode === 'debug' ? settings.mode : 'hide';
+    $('mode-hide').classList.toggle('active', mode === 'hide');
+    $('mode-dim').classList.toggle('active', mode === 'dim');
+    $('mode-debug').classList.toggle('active', mode === 'debug');
     document.body.classList.toggle('disabled', !settings.enabled);
   };
 
@@ -49,6 +51,7 @@
     $('skipShorts').addEventListener('change', () => { settings.skipShorts = $('skipShorts').checked; save(); });
     $('mode-hide').addEventListener('click', () => { settings.mode = 'hide'; render(); save(); });
     $('mode-dim').addEventListener('click', () => { settings.mode = 'dim'; render(); save(); });
+    $('mode-debug').addEventListener('click', () => { settings.mode = 'debug'; render(); save(); });
     $('clear').addEventListener('click', async () => {
       await B.storage.local.set({ cache_v1: {}, totalPulled: 0 });
       loadStats();

@@ -32,3 +32,9 @@ html[data-aib-on][data-aib-mode="dim"] [data-aib]::after {
   letter-spacing: 0.4px;
   pointer-events: none;
 }
+
+/* Debug mode: keep the item visible and mark its full boundary. */
+html[data-aib-on][data-aib-mode="debug"] [data-aib] {
+  outline: 8px solid #f00 !important;
+  outline-offset: -8px !important;
+}

@@ -9,6 +9,7 @@ The Firefox source is in `extension/`. The original Safari application is in `ap
 - It uses YouTube disclosure labels instead of a blocklist or an AI detector.
 - Hide mode removes labeled videos.
 - Dim mode fades labeled videos and adds a label.
+- Debug mode keeps labeled videos visible and adds a thick red outline.
 - The optional auto-skip setting skips labeled Shorts.
 - The extension stores its cache and settings locally.
 - The extension does not send analytics or tracking requests.
@@ -33,7 +34,7 @@ Validate the extension and create the production package:
 npm run build
 ```
 
-The build creates `dist/youtube_without_ai-1.0.zip`.
+The build creates `dist/youtube_without_ai-1.1.0.zip`.
 
 ## Limit
 

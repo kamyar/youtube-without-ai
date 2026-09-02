@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YouTube Without AI",
-  "version": "1.0",
+  "version": "1.1.0",
   "description": "Hides videos that YouTube labels as \"Made with AI\" from your feed, search, related videos and Shorts.",
   "icons": {
     "16": "icons/icon-16.png",

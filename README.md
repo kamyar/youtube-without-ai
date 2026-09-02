@@ -41,7 +41,7 @@ Validate the extension and create the production package:
 npm run build
 ```
 
-The build creates `dist/youtube_without_ai-1.1.2.zip`.
+The build creates `dist/youtube_without_ai-1.1.3.zip`.
 
 ## Limit
 

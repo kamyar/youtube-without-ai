@@ -19,6 +19,8 @@ build/
 # Node.js and Firefox build output
 node_modules/
 dist/
+.amo-upload-uuid
+.web-extension-id
 
 # Python
 __pycache__/

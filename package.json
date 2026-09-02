@@ -1,0 +1,13 @@
+{
+  "name": "youtube-without-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Firefox extension that hides YouTube videos labeled as made with AI.",
+  "scripts": {
+    "lint": "web-ext lint --source-dir extension",
+    "build": "npm run lint && web-ext build --source-dir extension --artifacts-dir dist --overwrite-dest"
+  },
+  "devDependencies": {
+    "web-ext": "10.6.0"
+  }
+}

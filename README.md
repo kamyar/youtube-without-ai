@@ -1,6 +1,6 @@
-# Weedout for YouTube
+# YouTube Without AI
 
-This repository contains a Firefox port of [Weedout for YouTube](https://github.com/masteranza/weedout-for-youtube). The extension hides videos that YouTube labels as “Made with AI.”
+YouTube Without AI is a Firefox port of [Weedout for YouTube](https://github.com/masteranza/weedout-for-youtube). The extension hides videos that YouTube labels as “Made with AI.”
 
 The Firefox source is in `extension/`. The original Safari application is in `app/`.
 
@@ -33,11 +33,11 @@ Validate the extension and create the production package:
 npm run build
 ```
 
-The build creates `dist/weedout_for_youtube-1.0.zip`.
+The build creates `dist/youtube_without_ai-1.0.zip`.
 
 ## Limit
 
-Weedout can only filter videos that YouTube labels. It cannot filter unlabeled AI content.
+YouTube Without AI can only filter videos that YouTube labels. It cannot filter unlabeled AI content.
 
 ## License
 

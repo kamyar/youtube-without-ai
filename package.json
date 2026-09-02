@@ -4,8 +4,9 @@
   "private": true,
   "description": "A Firefox extension that hides YouTube videos labeled as made with AI.",
   "scripts": {
+    "clean": "rm -rf dist",
     "lint": "web-ext lint --source-dir extension",
-    "build": "npm run lint && web-ext build --source-dir extension --artifacts-dir dist --overwrite-dest"
+    "build": "npm run clean && npm run lint && web-ext build --source-dir extension --artifacts-dir dist --overwrite-dest"
   },
   "devDependencies": {
     "web-ext": "10.6.0"

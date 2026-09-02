@@ -4,6 +4,13 @@
 
 The extension hides videos that YouTube labels as “Made with AI.” The Firefox source is in `extension/`. The imported Safari source is in `app/` for upstream reference.
 
+## Download
+
+- [Download the latest Mozilla-signed Firefox extension](https://github.com/kamyar/youtube-without-ai/releases/latest/download/youtube_without_ai-firefox.xpi)
+- [View the latest release](https://github.com/kamyar/youtube-without-ai/releases/latest)
+
+The Mozilla submission is unlisted. It does not have a public Firefox Add-ons page.
+
 ## What it does
 
 - It uses YouTube disclosure labels instead of a blocklist or an AI detector.
@@ -34,7 +41,7 @@ Validate the extension and create the production package:
 npm run build
 ```
 
-The build creates `dist/youtube_without_ai-1.1.1.zip`.
+The build creates `dist/youtube_without_ai-1.1.2.zip`.
 
 ## Limit
 

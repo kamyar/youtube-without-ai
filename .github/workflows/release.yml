@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 20
           cache: npm
@@ -53,19 +53,21 @@ jobs:
             --api-key "$AMO_JWT_ISSUER" \
             --api-secret "$AMO_JWT_SECRET" \
             --no-input \
-            --timeout 300000
+            --timeout 300000 \
+            --approval-timeout 900000
 
           version=$(node -p "require('./extension/manifest.json').version")
           signed=$(find dist/signed -maxdepth 1 -type f -name '*.xpi' -print -quit)
           test -n "$signed"
           mv "$signed" "dist/youtube_without_ai-$version-signed.xpi"
+          cp "dist/youtube_without_ai-$version-signed.xpi" dist/youtube_without_ai-firefox.xpi
           rm -rf dist/signed
 
       - name: Create checksums
         shell: bash
         run: |
           cd dist
-          sha256sum youtube_without_ai-*.zip youtube_without_ai-*-signed.xpi > SHA256SUMS.txt
+          sha256sum youtube_without_ai-*.zip youtube_without_ai-*.xpi > SHA256SUMS.txt
 
       - name: Create GitHub release
         shell: bash
@@ -76,6 +78,7 @@ jobs:
           gh release create "$GITHUB_REF_NAME" \
             "dist/youtube_without_ai-$version.zip" \
             "dist/youtube_without_ai-$version-signed.xpi" \
+            dist/youtube_without_ai-firefox.xpi \
             dist/SHA256SUMS.txt \
             --verify-tag \
             --generate-notes \
